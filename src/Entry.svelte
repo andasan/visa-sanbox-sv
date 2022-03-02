@@ -1,31 +1,20 @@
 <script>
-  let color = "green";
-
-  let firstName = 'Hoge'
-  let lastName = 'Boke'
-
-  //reactive values
-  $: fullName = `${firstName} ${lastName}`
-  //reactive statements
-  // $: console.log(color)
-
-  //runs the whole block if either one of that states update
-  $: {
-    console.log(color)
-    console.log(firstName)
-  }
-
-  const handleClick = () => (color = "red");
-  const handleInputChange = (e) => {
-    state = e.target.value;
-  };
+  let people = [
+    { id: 0, name: "hoge", color: "green", type: "mage", hp: 50 },
+    { id: 1, name: "boke", color: "orange", type: "crusader", hp: 50 },
+    { id: 2, name: "moge", color: "pink", type: "priest", hp: 50 },
+  ];
 </script>
 
 <main>
-  <p style="color: {color}">{fullName} {color}</p>
-  <input type="text" bind:value={firstName}>
-  <input type="text" bind:value={lastName}>
-  <input type="text" bind:value={color}>
+    {#each people as person (person.id)}
+        <div>
+            <h4 style="color:{person.color}">{person.name}</h4>
+            <p>{person.type}</p>
+        </div>
+    {:else}
+        <p>There's nothing here...</p>
+    {/each}
 </main>
 
 <style>
@@ -35,14 +24,6 @@
     max-width: 240px;
     margin: 0 auto;
   }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
   @media (min-width: 640px) {
     main {
       max-width: none;
