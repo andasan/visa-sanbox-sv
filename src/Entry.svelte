@@ -4,6 +4,10 @@
     { id: 1, name: "boke", color: "orange", type: "crusader", hp: 50 },
     { id: 2, name: "moge", color: "pink", type: "priest", hp: 50 },
   ];
+
+  const handleClick = (id) => {
+      people = people.filter(person => person.id !== id)
+  }
 </script>
 
 <main>
@@ -11,6 +15,7 @@
         <div>
             <h4 style="color:{person.color}">{person.name}</h4>
             <p>{person.type}</p>
+            <button on:click={() => handleClick(person.id)}>Delete</button>
         </div>
     {:else}
         <p>There's nothing here...</p>
