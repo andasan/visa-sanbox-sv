@@ -3,12 +3,14 @@
 	let state = 'init'
 
 	const handleClick = () => state = 'updated'
+	const handleInputChange = (e) => state = e.target.value 
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
 	<p>{state}</p>
 	<button on:click={handleClick}>Update state</button>
+	<input type="text" on:input={handleInputChange}>
 </main>
 
 <style>
