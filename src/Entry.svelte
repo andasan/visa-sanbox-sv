@@ -1,9 +1,14 @@
 <script>
 	export let name
+	let state = 'init'
+
+	const handleClick = () => state = 'updated'
 </script>
 
 <main>
 	<h1>Hello {name}!</h1>
+	<p>{state}</p>
+	<button on:click={handleClick}>Update state</button>
 </main>
 
 <style>
