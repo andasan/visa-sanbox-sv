@@ -1,7 +1,7 @@
 <script>
-    let showModal = true
+    export let showModal = false
     export let isPromo = false
-    export let message = "Empty modal message"
+    export let message = " Empty modal message"
 </script>
 
 <style>
