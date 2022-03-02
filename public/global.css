@@ -70,6 +70,10 @@ body{
 	margin: 0;
 }
 
+h3 {
+	color: #777;
+}
+
 h4 {
 	color: orangered;
 }
