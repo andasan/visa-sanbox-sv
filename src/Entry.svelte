@@ -1,24 +1,29 @@
 <script>
     import Modal from './Components/Modal.svelte'
 
+    let showModal = false
+    let message = ""
+
     let people = [
       { id: 0, name: "hoge", color: "green", type: "mage", hp: 50 },
       { id: 1, name: "boke", color: "orange", type: "crusader", hp: 50 },
       { id: 2, name: "moge", color: "pink", type: "priest", hp: 50 },
     ];
   
-    const handleClick = (id) => {
-      people = people.filter((person) => person.id !== id);
+    const handleClick = (id, name) => {
+      modalMessage = "⚠️ Are you sure you want to delete?!"
+      showModal = !showModal
+      // people = people.filter((person) => person.id !== id);
     };
   </script>
   
-  <Modal message="This is a modal" isPromo={true} />
+  <Modal isPromo={true} {showModal} {message} />
   <main>
     {#each people as person (person.id)}
       <div>
         <h4 style="color:{person.color}">{person.name}</h4>
         <p>{person.type}</p>
-        <button on:click={() => handleClick(person.id)}>Delete</button>
+        <button on:click={() => handleClick(person.id, person.name)}>Delete</button>
       </div>
     {:else}
       <p>There's nothing here...</p>
