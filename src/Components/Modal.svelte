@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   /**
    * Event Modifiers
    *
@@ -6,10 +7,14 @@
    * @ preventDefault - prevent the default action (run e.preventDefaul())
    * @ self - only fires the event if the clicked element is the target
    */
-
+  export let selectedPerson;
   export let showModal = false;
   export let isPromo = false;
   export let message = " Empty modal message";
+
+  const dispatch = createEventDispatcher();
+
+  const handleDelete = () => dispatch("delete", { id: selectedPerson.id });
 </script>
 
 {#if showModal}
@@ -17,8 +22,8 @@
     <div class="modal">
       <p>{message}</p>
 
-      <!-- <button on:click>Cancel</button>
-      <button on:click>Proceed</button> -->
+      <button on:click>Cancel</button>
+      <button on:click={handleDelete}>Proceed</button>
     </div>
   </div>
 {/if}
