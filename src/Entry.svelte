@@ -12,7 +12,7 @@
     };
   </script>
   
-  <Modal />
+  <Modal message="This is a modal" isPromo={true} />
   <main>
     {#each people as person (person.id)}
       <div>
