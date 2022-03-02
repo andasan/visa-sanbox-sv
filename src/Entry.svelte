@@ -1,8 +1,8 @@
 <script>
   export let name;
-  let state = "init";
+  let color = "green";
 
-  const handleClick = () => (state = "updated");
+  const handleClick = () => (color = "red");
   const handleInputChange = (e) => {
     state = e.target.value;
   };
@@ -10,10 +10,13 @@
 
 <main>
   <h1>Hello {name}!</h1>
-  <p>{state}</p>
-  <button on:click={handleClick}>Update state</button>
+  <p style="color: {color}">{color}</p>
+  <button on:click={handleClick}>Change Color to Red</button>
+  <!-- One way data binding -->
   <!-- <input type="text" on:input={handleInputChange} value={state} /> -->
-  <input type="text" bind:value={state}>
+
+  <!-- Two way data binding -->
+  <input type="text" bind:value={color}>
 </main>
 
 <style>
