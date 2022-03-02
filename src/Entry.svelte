@@ -6,20 +6,30 @@
   ];
 
   const handleClick = (id) => {
-      people = people.filter(person => person.id !== id)
-  }
+    people = people.filter((person) => person.id !== id);
+  };
+
+  let num = 5;
 </script>
 
+<!-- Conditional -->
+{#if num > 20}
+  <p>Greater than 10</p>
+{:else}
+  <p>Lesser than 20</p>
+{/if}
+
 <main>
-    {#each people as person (person.id)}
-        <div>
-            <h4 style="color:{person.color}">{person.name}</h4>
-            <p>{person.type}</p>
-            <button on:click={() => handleClick(person.id)}>Delete</button>
-        </div>
-    {:else}
-        <p>There's nothing here...</p>
-    {/each}
+  <!-- Loops -->
+  {#each people as person (person.id)}
+    <div>
+      <h4 style="color:{person.color}">{person.name}</h4>
+      <p>{person.type}</p>
+      <button on:click={() => handleClick(person.id)}>Delete</button>
+    </div>
+  {:else}
+    <p>There's nothing here...</p>
+  {/each}
 </main>
 
 <style>
