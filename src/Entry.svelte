@@ -1,6 +1,19 @@
 <script>
-  export let name;
   let color = "green";
+
+  let firstName = 'Hoge'
+  let lastName = 'Boke'
+
+  //reactive values
+  $: fullName = `${firstName} ${lastName}`
+  //reactive statements
+  // $: console.log(color)
+
+  //runs the whole block if either one of that states update
+  $: {
+    console.log(color)
+    console.log(firstName)
+  }
 
   const handleClick = () => (color = "red");
   const handleInputChange = (e) => {
@@ -9,13 +22,9 @@
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <p style="color: {color}">{color}</p>
-  <button on:click={handleClick}>Change Color to Red</button>
-  <!-- One way data binding -->
-  <!-- <input type="text" on:input={handleInputChange} value={state} /> -->
-
-  <!-- Two way data binding -->
+  <p style="color: {color}">{fullName} {color}</p>
+  <input type="text" bind:value={firstName}>
+  <input type="text" bind:value={lastName}>
   <input type="text" bind:value={color}>
 </main>
 
