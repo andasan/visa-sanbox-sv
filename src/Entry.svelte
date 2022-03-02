@@ -11,19 +11,22 @@
     ];
   
     const handleClick = (id, name) => {
-      modalMessage = "⚠️ Are you sure you want to delete?!"
-      showModal = !showModal
       // people = people.filter((person) => person.id !== id);
     };
+    
+    const toggleModal = () => {
+      message = "⚠️ Are you sure you want to delete?!"
+      showModal = !showModal  
+    }
   </script>
   
-  <Modal isPromo={true} {showModal} {message} />
+  <Modal isPromo={true} {showModal} {message} on:click={toggleModal} />
   <main>
     {#each people as person (person.id)}
       <div>
         <h4 style="color:{person.color}">{person.name}</h4>
         <p>{person.type}</p>
-        <button on:click={() => handleClick(person.id, person.name)}>Delete</button>
+        <button on:click={() => toggleModal()}>Delete</button>
       </div>
     {:else}
       <p>There's nothing here...</p>
