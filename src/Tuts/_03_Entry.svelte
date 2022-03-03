@@ -1,6 +1,5 @@
 <script>
-  import Modal from "./Components/Modal.svelte";
-  import AddPlayerForm from './Components/AddPlayerForm.svelte'
+  import Modal from "../Components/Modal.svelte";
 
   let showModal = false;
   let showAddModal = false;
@@ -44,7 +43,15 @@
 </Modal>
 
 <Modal showModal={showAddModal} on:click={toggleAddPlayerModal}>
-  <AddPlayerForm />
+  <form>
+    <input type="text" placeholder="Name">
+    <input type="text" placeholder="Profession">
+    <br>
+    <button>Add Player</button>
+  </form>
+  <div slot="title">
+    <h3 class="player">Add a new player</h3>
+  </div>
 </Modal>
 
 <main>
