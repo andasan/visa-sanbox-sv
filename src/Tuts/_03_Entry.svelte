@@ -1,22 +1,15 @@
 <script>
-  import Modal from "./Components/Modal.svelte";
-  import AddPlayerForm from './Components/AddPlayerForm.svelte'
+  import Modal from "../Components/Modal.svelte";
 
   let showModal = false;
   let showAddModal = false;
   let selectedPlayer = {};
 
   let players = [
-    { id: 0, name: "hoge", color: "green", classes: "mage", hp: 50 },
-    { id: 1, name: "boke", color: "orange", classes: "crusader", hp: 50 },
-    { id: 2, name: "moge", color: "pink", classes: "priest", hp: 50 },
+    { id: 0, name: "hoge", color: "green", type: "mage", hp: 50 },
+    { id: 1, name: "boke", color: "orange", type: "crusader", hp: 50 },
+    { id: 2, name: "moge", color: "pink", type: "priest", hp: 50 },
   ];
-
-  const addPlayer = (e) => {
-    //svelte cannot recognize this to update data
-    // players.push(e.detail.addPlayer)
-    players = [...players, e.detail]
-  }
 
   const handleAddPlayer = () => {
     showAddModal = !showAddModal
@@ -50,7 +43,15 @@
 </Modal>
 
 <Modal showModal={showAddModal} on:click={toggleAddPlayerModal}>
-  <AddPlayerForm on:addPlayer={addPlayer} />
+  <form>
+    <input type="text" placeholder="Name">
+    <input type="text" placeholder="Profession">
+    <br>
+    <button>Add Player</button>
+  </form>
+  <div slot="title">
+    <h3 class="player">Add a new player</h3>
+  </div>
 </Modal>
 
 <main>
@@ -58,7 +59,7 @@
   {#each players as player (player.id)}
     <div>
       <h4 style="color:{player.color}">{player.name}</h4>
-      <p>{player.classes}</p>
+      <p>{player.type}</p>
       <button on:click={() => toggleModal(player)}>Delete</button>
     </div>
   {:else}
