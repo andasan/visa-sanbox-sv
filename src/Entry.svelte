@@ -14,6 +14,11 @@
 <Header />
 <main>
   <Tabs {tabItems} {activeItem} on:tabChange={handleTabChange} />
+  {#if activeItem === 'Current Polls'}
+    <p>Poll here</p>
+  {:else if activeItem === 'Add New Poll'}
+    <p>New Poll Form here~</p>
+  {/if}
 </main>
 <Footer />
 
