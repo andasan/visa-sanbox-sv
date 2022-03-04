@@ -1,6 +1,6 @@
 <script>
   import Modal from "./Components/Modal.svelte";
-  import AddPlayerForm from './Components/AddPlayerForm.svelte'
+  import AddPlayerForm from "./Components/AddPlayerForm.svelte";
 
   let showModal = false;
   let showAddModal = false;
@@ -13,38 +13,35 @@
   ];
 
   const addPlayer = (e) => {
-    //svelte cannot recognize this to update data
-    // players.push(e.detail.addPlayer)
-    players = [...players, e.detail]
-  }
+    players = [...players, e.detail];
+    showAddModal = !showAddModal;
+  };
 
   const handleAddPlayer = () => {
-    showAddModal = !showAddModal
-  }
-  
+    showAddModal = !showAddModal;
+  };
+
   const toggleAddPlayerModal = () => {
-    showAddModal = !showAddModal
-  }
+    showAddModal = !showAddModal;
+  };
 
   const handleDelete = (id) => {
     players = players.filter((p) => p.id !== id);
-    showModal = !showModal
+    showModal = !showModal;
   };
 
   const toggleModal = (u) => {
-    selectedPlayer = u
-    // message = `⚠️ Are you sure you want to delete ${u.name}?!`;
+    selectedPlayer = u;
     showModal = !showModal;
   };
 </script>
 
-<Modal
-  isPromo={true}
-  {selectedPlayer}
-  {showModal}
-  on:click={toggleModal}
->
-  <h3>⚠️ Are you sure you want to delete <b style="color:yellow">{selectedPlayer.name}</b>?!</h3>
+<Modal isPromo={true} {selectedPlayer} {showModal} on:click={toggleModal}>
+  <h3>
+    ⚠️ Are you sure you want to delete <b style="color:yellow"
+      >{selectedPlayer.name}</b
+    >?!
+  </h3>
   <button on:click={toggleModal}>Cancel</button>
   <button on:click={() => handleDelete(selectedPlayer.id)}>Proceed</button>
 </Modal>
