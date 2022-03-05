@@ -20,7 +20,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "sirv-cli": "^2.0.0",
-    "svelte-toastify": "^0.0.27"
+    "@zerodevx/svelte-toast": "^0.7.1",
+    "sirv-cli": "^2.0.0"
   }
 }
