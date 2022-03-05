@@ -1,11 +1,23 @@
 <script>
     import { createEventDispatcher } from 'svelte'
     import Button from '../../widgets/button/Button.svelte'
+    
     const dispatch = createEventDispatcher()
+    
     let fields = { question: '', answerA: '', answerB: ''}
+    let errors = { question: '', answerA: '', answerB: ''}
+    let valid = false
 
     const submitHandler = () => {
-        dispatch('submitForm', fields)
+        valid = true
+
+        if(fields.question.trim().label < 5){
+            valid = false
+            errors.question = 'Question must be at least 5 characters long'
+        }
+
+
+        if(valid) dispatch('submitForm', fields)
     }
 </script>
 
@@ -22,7 +34,7 @@
         <label for="answer-b">Answer B:</label>
         <input type="text" name="answer-b" id="answer-b" bind:value={fields.answerB}>
     </div>
-    <Button type="secondary" flat={true} inverse={true}>Add Poll</Button>
+    <Button flat={true}>Add Poll</Button>
 </form>
 
 <style>
