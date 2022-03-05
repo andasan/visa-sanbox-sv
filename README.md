@@ -1,3 +1,3 @@
-# VISA sandbox
+# Polls@Svelte sandbox
 
 Web application bootstraped with Svelte
