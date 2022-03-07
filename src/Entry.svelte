@@ -10,6 +10,10 @@
   const handleTabChange = (e) => {
     activeItem = e.detail
   }
+
+  const handlePollSubmit = (e) => {
+    console.log(e.detail)
+  }
 </script>
 
 <Header />
@@ -18,7 +22,7 @@
   {#if activeItem === 'Current Polls'}
     <p>Poll here</p>
   {:else if activeItem === 'Add New Poll'}
-    <CreatePollForm />
+    <CreatePollForm on:submitForm={handlePollSubmit} />
   {/if}
 </main>
 <Footer />
