@@ -22,6 +22,11 @@
       errors.question = "Question must be at least 5 characters long";
     }
 
+    if (fields.answerA.trim().length < 5) {
+      valid = false;
+      errors.answerA = "Answer A must be at least 5 characters long";
+    }
+
     if (fields.answerB.trim().length < 5) {
       valid = false;
       errors.answerB = "Answer B must be at least 5 characters long";
