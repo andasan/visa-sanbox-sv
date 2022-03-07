@@ -13,24 +13,8 @@
   };
 
   const handleAddPoll = (e) => {
-    polls = [e.detail, ...polls];
+    // polls = [e.detail, ...polls];
     activeItem = "Current Polls";
-  };
-  const handleVote = (e) => {
-    const { id, option } = e.detail;
-
-    let pollCopy = [...polls];
-    let upVotedPoll = pollCopy.find((poll) => poll.id === id);
-
-    if (option === "A") {
-      upVotedPoll.votesA++;
-    }
-
-    if (option === "B") {
-      upVotedPoll.votesB++;
-    }
-
-    polls = [...pollCopy];
   };
 </script>
 
@@ -38,7 +22,7 @@
 <main>
   <Tabs {tabItems} {activeItem} on:tabChange={handleTabChange} />
   {#if activeItem === "Current Polls"}
-    <PollList on:vote={handleVote} />
+    <PollList />
   {:else if activeItem === "Add New Poll"}
     <CreatePollForm on:addPoll={handleAddPoll} />
   {/if}

@@ -1,28 +1,44 @@
 <script>
-    import { createEventDispatcher } from 'svelte'
+  // import { createEventDispatcher } from "svelte";
+
+  import PollStore from "../../../stores/PollStore";
   import Card from "../cards/Card.svelte";
   export let poll;
 
-  const dispatch = createEventDispatcher()
+  // const dispatch = createEventDispatcher();
 
   $: totalVotes = poll.votesA + poll.votesB;
-  $: percentA = Math.floor(100/totalVotes * poll.votesA)
-  $: percentB = Math.floor(100/totalVotes * poll.votesB)
+  $: percentA = Math.floor((100 / totalVotes) * poll.votesA);
+  $: percentB = Math.floor((100 / totalVotes) * poll.votesB);
 
   const handleVote = (option, id) => {
-      dispatch('vote', { option, id })
-  }
+    // dispatch("vote", { option, id });
+    PollStore.update((prevPoll) => {
+      let pollCopy = [...prevPoll];
+      let upVotedPoll = pollCopy.find((poll) => poll.id === id);
+
+      if (option === "A") {
+        upVotedPoll.votesA++;
+      }
+
+      if (option === "B") {
+        upVotedPoll.votesB++;
+      }
+
+      return pollCopy
+    });
+  };
 </script>
 
 <Card>
   <div class="poll">
     <h3>{poll.question}</h3>
     <p>Total Votes: {totalVotes}</p>
-    <div class="answer" on:click={() => handleVote('A', poll.id)}>
+    <div class="answer" on:click={() => handleVote("A", poll.id)}>
       <div class="percent percent-a" style="width: {percentA}%" />
       <span>{poll.answerA} ({poll.votesA})</span>
     </div>
-    <div class="answer" on:click={() => handleVote('B', poll.id)}>
+    <div class="answer" on:click={() => handleVote("B", poll.id)}>
       <div class="percent percent-b" style="width: {percentB}%" />
       <span>{poll.answerB} ({poll.votesB})</span>
     </div>
@@ -55,18 +71,18 @@
     padding: 10px 20px;
   }
 
-  .percent{
-      height: 100%;
-      position: absolute;
-      box-sizing: border-box;
+  .percent {
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
   }
 
-  .percent-a{
-      background-color: rgba(217,27,66,0.2);
-      border-left: 4px solid #d91b42;
+  .percent-a {
+    background-color: rgba(217, 27, 66, 0.2);
+    border-left: 4px solid #d91b42;
   }
-  .percent-b{
-      background-color: rgba(69,196,150,0.2);
-      border-left: 4px solid #45c496;
+  .percent-b {
+    background-color: rgba(69, 196, 150, 0.2);
+    border-left: 4px solid #45c496;
   }
 </style>

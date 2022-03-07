@@ -3,6 +3,7 @@
   import { SvelteToast, toast } from "@zerodevx/svelte-toast";
   import newUniqueId from 'locally-unique-id-generator'
 
+  import PollStore from '../../../stores/PollStore'
   import Button from "../../widgets/button/Button.svelte";
 
   const dispatch = createEventDispatcher();
@@ -35,6 +36,8 @@
 
     if (valid) {
       const poll = {...fields, votesA: 0, votesB: 0, id: newUniqueId()}
+
+      PollStore.update(prevPoll => [poll, ...prevPoll])
       dispatch("addPoll", poll);
     } else {
       toast.push(
