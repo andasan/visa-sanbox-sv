@@ -35,7 +35,7 @@
 
     if (valid) {
       const poll = {...fields, votesA: 0, votesB: 0, id: newUniqueId()}
-      dispatch("submitForm", fields);
+      dispatch("addPoll", poll);
     } else {
       toast.push(
         `
