@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { SvelteToast, toast } from "@zerodevx/svelte-toast";
+  import newUniqueId from 'locally-unique-id-generator'
 
   import Button from "../../widgets/button/Button.svelte";
 
@@ -22,18 +23,19 @@
       errors.question = "Question must be at least 5 characters long";
     }
 
-    if (fields.answerA.trim().length < 5) {
+    if (fields.answerA.trim().length < 1) {
       valid = false;
-      errors.answerA = "Answer A must be at least 5 characters long";
+      errors.answerA = "Answer A cannot be empty";
     }
 
-    if (fields.answerB.trim().length < 5) {
+    if (fields.answerB.trim().length < 1) {
       valid = false;
-      errors.answerB = "Answer B must be at least 5 characters long";
+      errors.answerB = "Answer B cannot be empty";
     }
 
     if (valid) {
-      dispatch("submitForm", fields);
+      const poll = {...fields, votesA: 0, votesB: 0, id: newUniqueId()}
+      dispatch("addPoll", poll);
     } else {
       toast.push(
         `

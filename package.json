@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@zerodevx/svelte-toast": "^0.7.1",
+    "locally-unique-id-generator": "^0.1.5",
     "sirv-cli": "^2.0.0"
   }
 }
